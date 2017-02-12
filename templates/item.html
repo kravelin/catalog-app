@@ -1,0 +1,70 @@
+{% extends "main.html" %}
+{% block content %}
+	<div class="row divider purple">
+	  <div class="col-md-12"></div>
+	</div>
+	<div class="row banner item">
+	  <div class="col-md-11 col-md-offset-1 padding-none">
+	    <h1>{{ item.name }}
+		  <figure class="creator">
+  {% if creator.picture %}
+            <img src="{{ creator.picture }}" alt="Creator's profile picture">
+  {% else %}
+			<img src="{{ url_for('static', filename='blank_user.gif') }}" alt="Creator's profile picture">
+  {% endif %}
+			<figcaption>{{ creator.name }}</figcaption>
+		  </figure>
+		</h1>
+	  </div>
+	</div>
+
+    <div class = 'flash'>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul>
+      {% for message in messages %}
+         <li> <strong> {{ message }} </strong> </li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+    </div>
+
+  	<div class="row padding-top padding-bottom">
+	  <div class="col-md-1"></div>
+	  <div class="col-md-11 padding-none">
+		<a href="{{ url_for('showCategory', category_id = category.id) }}">
+		  <button class="btn btn-default" id="category">
+			<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>Back to {{ category.name }}
+		  </button>
+		</a>
+  {% if session.user_id == item.user_id %}
+		<a href="{{ url_for('editItem', category_id = category.id, item_id = item.id )}}">
+		  <button class="btn btn-default" id="new-menu-item">
+			<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit Item
+		  </button>
+		</a>
+		<a href="{{ url_for('deleteItem', category_id = category.id, item_id = item.id) }}">
+		  <button class="btn btn-default delete" id="delete-item">
+			<span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>Delete Item
+		  </button>
+		</a>
+  {% endif %}
+	  </div>
+	  <div class="col-md-7"></div>
+	</div>
+
+	<div class="row">
+	  <div class="col-md-1"></div>
+		<div class="col-md-3">
+   		  <p>{{ item.description }}</p>
+		  <p class="item-cost">Cost: {{ item.cost }}</p>
+		  <p class="item-weight">Weight: {{ item.weight }}</p>
+  {% if item.image != '' %}
+          <img class="item-image" src="/static/uploads/{{ item.image }}" alt="image of item">
+  {% endif %}
+		</div>
+	  </div>
+	  <div class="col-md-1"></div>
+	</div>
+{% endblock %}

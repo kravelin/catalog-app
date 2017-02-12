@@ -1,0 +1,45 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Equipment Catalog{% endblock %}
+
+{% block metas %}
+{{super()}}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Udacity FSND Item Catalog Project" />
+    <meta name="author" content="Kele Kravelin">
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,300,700">
+    <link rel="stylesheet" href="{{url_for('.static', filename='styles.css')}}">
+{% endblock %}
+
+{% block navbar %}
+    <div class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{ url_for('showCatalog') }}"><img src="{{ url_for('static', filename='logo-navbar.svg') }}" alt="Equipment Catalog"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="{{ url_for('showCatalog') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+  {% if not session.username %}
+            <li class="active"><a href="{{ url_for('showLogin') }}"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>Login</a></li>
+  {% else %}
+            <li class="active"><a href="{{ url_for('disconnect') }}"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>Logout</a></li>
+  {% endif %}
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div><!--/.container-fluid --></div>
+    </div>
+{% endblock %}
