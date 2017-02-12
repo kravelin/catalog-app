@@ -236,7 +236,7 @@ def categoryItemsJSON(category_id):
     return jsonify(Items=[i.serialize for i in items])
 
 
-@app.route('/catalog/<int:category_id>/items/<int:item_id>/JSON')
+@app.route('/catalog/<int:category_id>/item/<int:item_id>/JSON')
 def itemJSON(category_id, item_id):
     Item = session.query(Item).filter_by(id=item_id).one()
     return jsonify(Item=Item.serialize)
@@ -323,6 +323,8 @@ def deleteCategory(category_id):
               "order to delete.');}</script><body onload='myFunction()''>"
     if request.method == 'POST':
         session.delete(category)
+        items = session.query(Item).filter_by(category_id=category_id)
+        session.delete(items)
         flash('%s Successfully Deleted' % category.name)
         session.commit()
         return redirect(url_for('showCatalog', category_id = category_id))
