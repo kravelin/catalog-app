@@ -19,4 +19,4 @@ You can get JSON outputs for the categories, items, or a specific item by using 
 * items in a category: http://localhost:8000/catalog/\<category_id\>/items/JSON
 * a specific item: http://localhost:8000/catalog/\<category_id\>/item/\<item_id\>/JSON
 
-NOTE: If a user deleted one of their categories all items under that category will also be deleted no matter who created them. This prevents orphan items from floating around in the database.
+NOTE: If a user deletes one of their categories all items under that category will also be deleted no matter who created them. This prevents orphan items from floating around in the database.
