@@ -16,7 +16,7 @@ In both cases below the add/edit forms will discard any other file type that's u
 
 You can get JSON outputs for the categories, items, or a specific item by using the following urls (note that images will only be filenames not the actual images):
 * categories: http://localhost:8000/catalog/JSON
-* items in a category: http://localhost:8000/catalog/<category_id>/items/JSON
-* a specific item: http://localhost:8000/catalog/<category_id>/item/<item_id>/JSON
+* items in a category: http://localhost:8000/catalog/\<category_id\>/items/JSON
+* a specific item: http://localhost:8000/catalog/\<category_id\>/item/\<item_id\>/JSON
 
 NOTE: If a user deleted one of their categories all items under that category will also be deleted no matter who created them. This prevents orphan items from floating around in the database.
