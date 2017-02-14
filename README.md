@@ -4,7 +4,7 @@ This system runs on localhost port 8000 and uses Flask and SQLAlchemy on Python 
 
 Once the requirements are installed run 'python database_setup.py' to initialize the database if you don't want to use the one included.
 
-You can then run the app using 'python project.py'. This will start the server running. You can conect to the app using your web browser and going to http://localhost:8000.
+You can then run the app using 'python catalog.py'. This will start the server running. You can conect to the app using your web browser and going to http://localhost:8000.
 
 No changes can be made to the database unless a user logs in using Google (just click on 'login' in the upper right corner). Very basic information is all this app checks for: username, email, profile picture.
 
