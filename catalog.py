@@ -367,7 +367,7 @@ def editItem(category_id, item_id):
         updateItem(editedItem)
         if oldName:
             flash('Item, %s, Renamed To, %s, and Successfully Edited' %
-                  (oldName, editedName.name))
+                  (oldName, editedItem.name))
         else:
             flash('Item %s Successfully Edited' % editedItem.name)
         return redirect(url_for('showCategory', category_id=category_id))
@@ -381,7 +381,7 @@ def editItem(category_id, item_id):
 @login_required
 def deleteItem(category_id, item_id):
     itemToDelete = getItem(item_id)
-    if login_session['user_id'] != item.user_id:
+    if login_session['user_id'] != itemToDelete.user_id:
         return "<script>function myFunction() {alert('You are not authorized" \
         " to delete this item. Please create your own item in order to " \
         "delete it.');}</script><body onload='myFunction()''>"
