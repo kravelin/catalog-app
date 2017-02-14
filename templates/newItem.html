@@ -23,6 +23,7 @@
 			<input type="text" class="form-control" maxlength="10" name="weight" placeholder="Weight of item">
 			<label for="image">Image: Upload jpg, png, gif, or svg of dimensions 150x150</label>
 			<input type="file" class="form-control" name="image">
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
 			<div class="padding-bottom"></div>
 			<button type="submit" class="btn btn-default" id="submit" type="submit">
 			  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Create

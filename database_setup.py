@@ -1,6 +1,6 @@
 from sqlalchemy import Column, ForeignKey, Integer, String, LargeBinary
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, backref
 from sqlalchemy import create_engine
 
 Base = declarative_base()
@@ -23,8 +23,8 @@ class Category(Base):
     name = Column(String(250), nullable=False)
     banner = Column(String(250))
     user_id = Column(Integer, ForeignKey('user.id'))
-    user = relationship(User)
-
+    user = relationship("User")
+    items = relationship("Item", cascade="all, delete-orphan")
 
     @property
     def serialize(self):
@@ -49,8 +49,8 @@ class Item(Base):
     image = Column(String(250))
     category_id = Column(Integer,ForeignKey('category.id'))
     user_id = Column(Integer,ForeignKey('user.id'))
-    category = relationship(Category)
-    user = relationship(User)
+    category = relationship("Category")
+    user = relationship("User")
 
 
     @property
