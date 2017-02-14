@@ -115,7 +115,8 @@ def updateCategory(category):
 def removeCategory(category_id):
     category = getCategory(category_id)
     banner = session.query(Category.banner).filter_by(id = category_id).scalar()
-    remove_image(banner)
+    if banner != '':
+        remove_image(banner)
     items = getItems(category_id)
     for item in items:
         if item.image != '':
@@ -141,8 +142,8 @@ def updateItem(item):
     session.commit()
 
 
-def removeItem(item_id):
-    item = getItem(item_id)
-    remove_image(item.image)
+def removeItem(item):
+    if item.image != '':
+        remove_image(item.image)
     session.delete(item)
     session.commit()

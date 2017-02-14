@@ -362,7 +362,8 @@ def editItem(category_id, item_id):
         if request.form['weight']:
             editedItem.weight = request.form['weight']
         if 'image' in request.files:
-            remove_image(editedItem.image)
+            if editedItem.image != '':
+                remove_image(editedItem.image)
             editedItem.image = store_image(request.files['image'])
         updateItem(editedItem)
         if oldName:
